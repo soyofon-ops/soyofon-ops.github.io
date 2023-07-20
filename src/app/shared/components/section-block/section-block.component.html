@@ -1,0 +1,12 @@
+<div
+  class="section-block"
+  [style.--padding]="padding"
+  [style.--margin]="margin"
+>
+  <div class="section-block__head">
+    <ng-content select="[head]"></ng-content>
+  </div>
+  <div class="section-block__content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>
