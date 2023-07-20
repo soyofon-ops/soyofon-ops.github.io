@@ -1,9 +1,16 @@
-<ui-section-block>
-  <ng-container content>TEST</ng-container>
-</ui-section-block>
-<ui-section-block>
-  <ng-container content>TEST</ng-container>
-</ui-section-block>
-<ui-section-block>
-  <ng-container content>TEST</ng-container>
+<ui-section-block divider>
+  <ng-container head> </ng-container>
+  <ng-container content>
+    <ui-section-block divider>
+      <ng-container head></ng-container>
+      <ng-container content>
+        <markdown
+          lineNumbers
+          lineHighlight
+          [src]="'/assets/articles/0001.md'"
+        ></markdown>
+        {{ a() }}
+      </ng-container>
+    </ui-section-block>
+  </ng-container>
 </ui-section-block>

@@ -1,6 +1,15 @@
 .section-block {
-  border-radius: 4px;
+  background: var(--background);
   border: 1px solid;
-  margin: calc(var(--margin) * 1px);
+  border-color: var(--border-color);
+  border-radius: calc(var(--border-radius) * 1px);
+  color: var(--color);
   padding: calc(var(--padding) * 1px);
+  box-sizing: border-box;
+}
+
+:host:nth-of-type(n):not(:first-of-type) {
+  display: block;
+  box-sizing: border-box;
+  margin-top: calc(var(--margin) * 1px);
 }

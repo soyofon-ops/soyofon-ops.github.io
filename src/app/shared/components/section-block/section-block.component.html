@@ -2,10 +2,15 @@
   class="section-block"
   [style.--padding]="padding"
   [style.--margin]="margin"
+  [style.--border-color]="borderColor"
+  [style.--border-radius]="borderRadius"
+  [style.--background]="background"
+  [style.--color]="color"
 >
   <div class="section-block__head">
     <ng-content select="[head]"></ng-content>
   </div>
+  <hr *ngIf="divider" />
   <div class="section-block__content">
     <ng-content select="[content]"></ng-content>
   </div>
