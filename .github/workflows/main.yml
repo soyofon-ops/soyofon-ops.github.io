@@ -42,5 +42,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install
-          npm run deploy
+          npm run build
           npx angular-cli-ghpages --dir=dist/soyofon-website/browser
