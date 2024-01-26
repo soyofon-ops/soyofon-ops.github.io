@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branch: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout
+        uses: action/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: action/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache Node Modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install Global Dependencies
+        run: |
+          npm -g install angular-cli-ghpages
+
+      - name: Prepare and Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install
+          npm run ng -- deploy --no-silent
+          npx angular-cli-ghpages --dir=dist/soyofon-website/browser
