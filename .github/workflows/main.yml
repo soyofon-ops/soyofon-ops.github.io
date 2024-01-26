@@ -35,7 +35,7 @@ jobs:
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: Install Global Dependencies
         run: |
-          npm -g install angular-cli-ghpages
+          npm -g install angular-cli-ghpages @angular/cli
 
       - name: Prepare and Deploy
         env:
